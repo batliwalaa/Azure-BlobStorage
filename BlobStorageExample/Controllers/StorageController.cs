@@ -36,18 +36,6 @@ public class StorageController : ControllerBase
     return Ok(await _containerService.GetAsync());
   }
 
-  [HttpPost("blob/save")]
-  [SwaggerOperation(Tags = new[] { "Blob" })]
-  public async Task<IActionResult> Save([FromForm] SaveBlobRequest request)
-  {
-    return Ok(await _blobService.SaveAsync(request));
-  }
-
-  [HttpDelete("blob")]
-  [SwaggerOperation(Tags = new[] { "Blob" })]
-  public async Task<IActionResult> Delete([FromQuery] DeleteBlobRequest deleteBlobRequest) =>
-    Ok(await _blobService.DeleteAsync(deleteBlobRequest));
-
   [HttpGet("blob")]
   [SwaggerOperation(Tags = new[] { "Blob" })]
   [Produces(MediaTypeNames.Application.Json)]
@@ -76,4 +64,16 @@ public class StorageController : ControllerBase
   [SwaggerOperation(Tags = new[] { "Blob" })]
   public async Task<IActionResult> SaveMany([FromForm] SaveManyBlobRequest saveManyBlobRequest) =>
     Ok(await _blobService.SaveAsync(saveManyBlobRequest));
+
+  [HttpPost("blob/save")]
+  [SwaggerOperation(Tags = new[] { "Blob" })]
+  public async Task<IActionResult> Save([FromForm] SaveBlobRequest request)
+  {
+    return Ok(await _blobService.SaveAsync(request));
+  }
+
+  [HttpDelete("blob")]
+  [SwaggerOperation(Tags = new[] { "Blob" })]
+  public async Task<IActionResult> Delete([FromQuery] DeleteBlobRequest deleteBlobRequest) =>
+    Ok(await _blobService.DeleteAsync(deleteBlobRequest));
 }

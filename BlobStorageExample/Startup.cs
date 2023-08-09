@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace BlobStorageExample;
 
@@ -26,22 +25,7 @@ public class Startup
     services.AddScoped<IContainerService, ContainerService>();
 
     services.AddControllers();
-
-    services.AddSwaggerGen(c =>
-    {
-      c.SwaggerDoc("v1", new OpenApiInfo
-      {
-        Version = "v1",
-        Title = "Blob Store API",
-        Description = "Api for communicating with Azure blob storage"
-      });
-
-      //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-      //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-
-      //c.IncludeXmlComments(xmlPath);
-      c.EnableAnnotations();
-    });
+    services.AddSwagger();
   }
 
   // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
